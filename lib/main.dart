@@ -19,53 +19,48 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Map<String, bool> _filters = {
-    'gluten': false,
-    'lactose': false,
-    'vegan': false,
-    'vegetarian': false,
-  };
+  late Map<String, bool> _filters;
 
+  _MyAppState() {
+    _filters = {
+      'gluten': false,
+      'lactose': false,
+      'vegan': false,
+      'vegetarian': false,
+    };
+  }
   List<Meal> _availableMeals = DUMMY_MEALS;
   final List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
+    final glutenFree = _filters['gluten']!;
+    final lactoseFree = _filters['lactose']!;
+    final vegan = _filters['vegan']!;
+    final vegetarian = _filters['vegetarian']!;
+
     setState(() {
-      _filters = filterData;
-      _availableMeals = DUMMY_MEALS.where(
-        (meal) {
-          if (_filters['gluten']! && !meal.isGlutenFree) {
-            return false;
-          }
-          if (_filters['lactose']! && !meal.isLactoseFree) {
-            return false;
-          }
-          if (_filters['vegan']! && !meal.isVegan) {
-            return false;
-          }
-          if (_filters['vegetarian']! && !meal.isVegetarian) {
-            return false;
-          }
-          return true;
-        },
-      ).toList();
+      _availableMeals = DUMMY_MEALS
+          .where((meal) =>
+              (!glutenFree || meal.isGlutenFree) &&
+              (!lactoseFree || meal.isLactoseFree) &&
+              (!vegan || meal.isVegan) &&
+              (!vegetarian || meal.isVegetarian))
+          .toList();
     });
   }
 
   void _toggleFavorite(String mealId) {
-    final existingIndex =
-        _favoriteMeals.indexWhere((meal) => meal.id == mealId);
-    if (existingIndex >= 0) {
-      setState(() {
-        _favoriteMeals.removeAt(existingIndex);
-      });
-    } else {
-      setState(() {
-        _favoriteMeals.add(
-          DUMMY_MEALS.firstWhere((meal) => meal.id == mealId),
-        );
-      });
-    }
+    final existingMeal = _favoriteMeals.firstWhere(
+      (meal) => meal.id == mealId,
+      orElse: () => DUMMY_MEALS.firstWhere((meal) => meal.id == mealId),
+    );
+    setState(() {
+      if (_favoriteMeals.contains(existingMeal)) {
+        _favoriteMeals.remove(existingMeal);
+      } else {
+        _favoriteMeals.add(existingMeal);
+      }
+    });
   }
 
   bool _isMealFavorite(String id) {

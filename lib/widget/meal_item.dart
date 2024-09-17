@@ -63,89 +63,77 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => selectMeal(context),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        elevation: 4,
-        margin: const EdgeInsets.all(10),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      elevation: 4,
+      margin: const EdgeInsets.all(10),
+      child: InkWell(
+        onTap: () => selectMeal(context),
         child: Column(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  child: Image.network(
-                    imageURL,
-                    height: 250,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Positioned(
-                  bottom: 20,
-                  right: 10,
-                  child: Container(
-                    width: 300,
-                    color: Colors.black54,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 20,
-                    ),
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 26,
-                        color: Colors.white,
-                      ),
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
-                    ),
-                  ),
-                ),
-              ],
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+              ),
+              child: Image.network(
+                imageURL,
+                height: 250,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-            Padding(
+            Container(
               padding: const EdgeInsets.all(20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              child: Column(
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      const Icon(
-                        Icons.schedule,
-                      ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text('$duration min'),
-                    ],
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 26,
+                    ),
+                    softWrap: true,
+                    overflow: TextOverflow.fade,
                   ),
+                  const SizedBox(height: 10),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      const Icon(
-                        Icons.work,
+                      Row(
+                        children: <Widget>[
+                          const Icon(
+                            Icons.schedule,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Text('$duration min'),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 6,
+                      Row(
+                        children: <Widget>[
+                          const Icon(
+                            Icons.work,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Text(complexityText),
+                        ],
                       ),
-                      Text(complexityText),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      const Icon(
-                        Icons.attach_money_outlined,
+                      Row(
+                        children: <Widget>[
+                          const Icon(
+                            Icons.attach_money_outlined,
+                          ),
+                          const SizedBox(
+                            width: 6,
+                          ),
+                          Text(affordabilityText),
+                        ],
                       ),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(affordabilityText),
                     ],
                   ),
                 ],
