@@ -1,16 +1,31 @@
+
+
 # flutter_meals_app
+=====================
 
-A new Flutter project.
+## Aplicativo de Receitas de Comida
 
-## Getting Started
+Este é um projeto de aplicativo de receitas de comida desenvolvido em Flutter. O aplicativo permite que os usuários visualizem e interajam com diferentes categorias de receitas, incluindo detalhes sobre cada prato.
 
-This project is a starting point for a Flutter application.
+## Funcionalidades
 
-A few resources to get you started if this is your first Flutter project:
+*   Visualização de categorias de receitas
+*   Detalhes de cada prato, incluindo ingredientes e instruções de preparo
+*   Navegação entre telas para visualizar diferentes receitas e categorias
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tecnologias Utilizadas
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+*   Flutter
+*   Dart
+*   Material Design
+
+## Como Executar o Projeto
+
+1.  Clone o repositório do projeto
+2.  Abra o projeto no seu editor de código preferido
+3.  Execute o comando `flutter pub get` para baixar as dependências
+4.  Execute o comando `flutter run` para executar o aplicativo
+
+## Contribuições
+
+Contribuições são bem-vindas! Se você tiver alguma ideia ou sugestão para melhorar o aplicativo, por favor, abra uma issue ou faça um pull request.
