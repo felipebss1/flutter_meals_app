@@ -39,6 +39,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
     String subtitle,
     bool currentValue,
     Function updateValue,
+    Color color,
   ) {
     return SwitchListTile(
       title: Text(title),
@@ -47,6 +48,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
       onChanged: (value) {
         updateValue(value);
       },
+      activeColor: color,
+      inactiveThumbColor: Colors.grey,
+      inactiveTrackColor: Colors.grey.shade400,
     );
   }
 
@@ -84,45 +88,34 @@ class _FiltersScreenState extends State<FiltersScreen> {
             child: ListView(
               children: [
                 _buildSwitchListTile(
-                  'Glutten Free',
-                  'Only includes glutten free meals',
-                  _glutenFree,
-                  (newValue) {
-                    setState(() {
-                      _glutenFree = newValue;
-                    });
-                  },
-                ),
+                    'Glutten Free',
+                    'Only includes glutten free meals',
+                    _glutenFree, (newValue) {
+                  setState(() {
+                    _glutenFree = newValue;
+                  });
+                }, Colors.blue.shade600),
                 _buildSwitchListTile(
-                  'Lactose Free',
-                  'Only includes lactose free meals',
-                  _lactoseFree,
-                  (newValue) {
-                    setState(() {
-                      _lactoseFree = newValue;
-                    });
-                  },
-                ),
+                    'Lactose Free',
+                    'Only includes lactose free meals',
+                    _lactoseFree, (newValue) {
+                  setState(() {
+                    _lactoseFree = newValue;
+                  });
+                }, Colors.blue.shade600),
                 _buildSwitchListTile(
-                  'Vegan',
-                  'Only includes vegan meals',
-                  _vegan,
-                  (newValue) {
-                    setState(() {
-                      _vegan = newValue;
-                    });
-                  },
-                ),
+                    'Vegan', 'Only includes vegan meals', _vegan, (newValue) {
+                  setState(() {
+                    _vegan = newValue;
+                  });
+                }, Colors.blue.shade600),
                 _buildSwitchListTile(
-                  'Vegetarian',
-                  'Only includes vegetarian meals',
-                  _vegetarian,
-                  (newValue) {
-                    setState(() {
-                      _vegetarian = newValue;
-                    });
-                  },
-                ),
+                    'Vegetarian', 'Only includes vegetarian meals', _vegetarian,
+                    (newValue) {
+                  setState(() {
+                    _vegetarian = newValue;
+                  });
+                }, Colors.blue.shade600),
               ],
             ),
           ),
